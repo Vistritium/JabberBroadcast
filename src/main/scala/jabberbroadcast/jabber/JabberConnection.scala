@@ -29,7 +29,8 @@ class JabberConnection(val connPops: JabberConnectionConfiguration, val messageP
     val sessionConfig = XmppSessionConfiguration.builder()
         .cacheDirectory(Files.createTempDirectory("jabberbroadcast_xmpp"))
         .build()
-    xmppClient = new XmppClient(domain, sessionConfig, xmppConfig)
+    xmppClient = XmppClient.create(domain, sessionConfig, xmppConfig)
+
 
     xmppClient.addInboundMessageListener((t: MessageEvent) => {
       self ! t
