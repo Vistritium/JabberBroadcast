@@ -6,7 +6,7 @@ pipeline {
         DOCKER_LOGIN_PASSWORD = credentials('DOCKER_REGISTRY_PASSWORD')
         DOCKER_REPO = 'nowicki.azurecr.io'
         DOCKER_APP_NAME = 'jabberbroadcast'
-        DOCKER_STACK_NAME = 'jabberbroadcast'
+        DOCKER_SERVICE_NAME = 'jabberbroadcast_app'
     }
 
     stages {
@@ -19,7 +19,7 @@ pipeline {
         stage('Restart service') {
             steps {
                 sh 'docker pull nowicki.azurecr.io/nowicki/${DOCKER_APP_NAME}:latest'
-                sh 'docker service update --with-registry-auth --image nowicki.azurecr.io/nowicki/${DOCKER_APP_NAME}:latest ${DOCKER_STACK_NAME}'
+                sh 'docker service update --with-registry-auth --image nowicki.azurecr.io/nowicki/${DOCKER_APP_NAME}:latest ${DOCKER_SERVICE_NAME}'
 
             }
         }
