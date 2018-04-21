@@ -25,7 +25,7 @@ libraryDependencies ++= Seq(
 javaOptions in Universal ++= Seq(
   "-J-Xmx80m",
   "-J-Xms10m",
-  "-DENV_CONFIG=/env.config"
+  "-DENV_CONFIG=/env.conf"
 )
 
 mainClass in Compile := Some("jabberbroadcast.Main")
