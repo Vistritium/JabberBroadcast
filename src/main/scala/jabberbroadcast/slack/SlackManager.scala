@@ -3,7 +3,6 @@ package jabberbroadcast.slack
 import jabberbroadcast.{AppActor, Config}
 import jabberbroadcast.broadcast.{Broadcast, GenericMessage}
 import okhttp3.{MediaType, Request, RequestBody}
-import upickle.default._
 import resource._
 
 class SlackManager extends AppActor {

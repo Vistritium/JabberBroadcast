@@ -1,3 +1,4 @@
+
 name := "JabberBroadcast"
 
 version := "0.1"
@@ -20,3 +21,18 @@ libraryDependencies ++= Seq(
   "com.fasterxml.jackson.core" % "jackson-databind" % "2.9.5",
   "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.5"
 )
+
+javaOptions in Universal ++= Seq(
+  "-J-Xmx80m",
+  "-J-Xms10m",
+  "-DENV_CONFIG=/env.config"
+)
+
+mainClass in Compile := Some("jabberbroadcast.Main")
+
+enablePlugins(JavaAppPackaging)
+enablePlugins(DockerPlugin)
+
+dockerRepository := Some("nowicki.azurecr.io")
+dockerUsername := Some("nowicki")
+dockerUpdateLatest := true
