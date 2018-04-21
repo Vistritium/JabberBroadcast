@@ -37,6 +37,7 @@ class SlackManager extends AppActor {
   }
 
   override def preStart(): Unit = {
+    logger.info("SlackManager enabled")
     if (config.getBoolean("testMsg")) {
       self ! Broadcast("TEST_USER", "TEST MESSAGE!", "TEST_SERVICE", Some(":goons:"))
     }

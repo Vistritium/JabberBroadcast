@@ -19,7 +19,7 @@ class JabberManager(broadcastConsumer: ActorRef) extends AppActor {
   private var actors: List[ActorRef] = _
 
   override def preStart(): Unit = {
-
+    logger.info("JabberManager enabled")
     actors = configs.map(config => {
       val props = Props(classOf[JabberConnectionManager], config._1, config._2, broadcastConsumer)
       context.actorOf(props, config._3)
