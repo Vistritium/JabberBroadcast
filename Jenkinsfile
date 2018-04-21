@@ -18,7 +18,7 @@ pipeline {
         stage('Restart service') {
             steps {
                 sh 'docker pull nowicki.azurecr.io/nowicki/${DOCKER_APP_NAME}:latest'
-                #sh 'docker service update --with-registry-auth --image nowicki.azurecr.io/nowicki/${DOCKER_APP_NAME}:latest czapli-stack_app'
+                //sh 'docker service update --with-registry-auth --image nowicki.azurecr.io/nowicki/${DOCKER_APP_NAME}:latest czapli-stack_app'
 
             }
         }
