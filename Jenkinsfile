@@ -5,7 +5,7 @@ pipeline {
         DOCKER_LOGIN_USERNAME = 'nowicki'
         DOCKER_LOGIN_PASSWORD = credentials('DOCKER_REGISTRY_PASSWORD')
         DOCKER_REPO = 'nowicki.azurecr.io'
-        DOCKER_APP_NAME = 'jabber-broadcast'
+        DOCKER_APP_NAME = 'jabberbroadcast'
     }
 
     stages {
