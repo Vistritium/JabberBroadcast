@@ -1,8 +1,10 @@
 package jabberbroadcast.jabber
 
+import java.nio.file.{Files, Paths}
+
 import akka.actor.{ActorRef, Kill, Props}
 import jabberbroadcast.{AppActor, Config}
-import rocks.xmpp.core.session.{TcpConnectionConfiguration, XmppClient}
+import rocks.xmpp.core.session.{TcpConnectionConfiguration, XmppClient, XmppSessionConfiguration}
 import rocks.xmpp.core.stanza.MessageEvent
 
 import scala.concurrent.duration._
@@ -24,7 +26,10 @@ class JabberConnection(val connPops: JabberConnectionConfiguration, val messageP
   override def preStart(): Unit = {
     val tls = Config().getBoolean("jabber.TLS")
     val xmppConfig = TcpConnectionConfiguration.builder().secure(tls).build()
-    xmppClient = new XmppClient(domain, xmppConfig)
+    val sessionConfig = XmppSessionConfiguration.builder()
+        .cacheDirectory(Files.createTempDirectory("jabberbroadcast_xmpp"))
+        .build()
+    xmppClient = new XmppClient(domain, sessionConfig, xmppConfig)
 
     xmppClient.addInboundMessageListener((t: MessageEvent) => {
       self ! t
